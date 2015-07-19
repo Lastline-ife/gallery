@@ -1,0 +1,59 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+@media screen and(max-width: 655px){
+	header ul{
+		width: 655px;
+	}
+}
+header{
+	height: 50px;
+	background-color: #2d4f7c;
+	text-align: center;
+}
+header li{
+	display: inline-block;
+	list-style-type: none;
+	line-height: 50px;
+	position: relative;
+}
+header li a{
+	text-decoration: none;
+	color: #96a7be;
+	font-family: "STSong";
+	font-weight: bold;
+	font-size: 15px;
+	margin: 0 auto;
+	margin: 20px;
+}
+header li a:hover{
+	color: #f7ffff;
+}
+header li a:hover::after{
+	content: "";
+	position: absolute;
+	left: 40%;
+	bottom: 0;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 8px 8px 8px;
+	border-color: transparent transparent #fff transparent;
+}
+.main{
+	width: 980px;
+	margin: 0 auto;
+	text-align: center;
+}
+.column{
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 10px;
+}
+.column a{
+	display: block;
+	margin-bottom: 5px;
+	padding: 5px;
+	margin: 0;
+}
