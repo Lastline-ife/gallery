@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Masking</title>
+	<link rel="stylesheet" href="css/mask.css">
+</head>
+<body>
+	<section id="list-img">
+		<img src="img/Placeholder_1.jpg" alt="Place" onclick="showDiv()">
+	</section>
+
+	<section id="mask-img">  
+    <div id="popWindow" class="popWindow" style="display: none;">  
+    	<div id="close" class="close-layer" onclick="closeDiv()">
+    		<i></i>
+        </div>   
+        <div class="pin-view-arrows">
+        	<a href="http://baidu.com" class="next x layer-view"></a>
+        	<a href="" class="pre x layer-view"></a>
+        </div>
+    </div>  
+    <div id="maskLayer" class="maskLayer" style="display: none;">           
+           这里显示原图片           
+    </div>  
+    </section>
+
+    <script type="text/javascript" src="js/mask.js"></script>
+</body>
+</html>
