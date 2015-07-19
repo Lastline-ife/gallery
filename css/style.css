@@ -21,10 +21,9 @@ header li{
 header li a{
 	text-decoration: none;
 	color: #96a7be;
-	font-family: "STSong";
+	font-family: "STSong", sans-serif;
 	font-weight: bold;
 	font-size: 15px;
-	margin: 0 auto;
 	margin: 20px;
 }
 header li a:hover{
@@ -41,7 +40,7 @@ header li a:hover::after{
 	border-width: 0 8px 8px 8px;
 	border-color: transparent transparent #fff transparent;
 }
-.main{
+#main{
 	width: 980px;
 	margin: 0 auto;
 	text-align: center;
@@ -55,5 +54,7 @@ header li a:hover::after{
 	display: block;
 	margin-bottom: 5px;
 	padding: 5px;
-	margin: 0;
+}
+.column img{
+	max-width: 200px;
 }
