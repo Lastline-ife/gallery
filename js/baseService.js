@@ -20,7 +20,7 @@ $(function() {
     var Picture = AV.Object.extend("Picture");
     var _File = AV.Object.extend("_File");
 
-    function getPictureByCategory(category,callback) {
+    function getPicturesByCategory(category,callback) {
         var query = new AV.Query(_File);
         query.startsWith("name", category+'{}');
         query.find({
@@ -47,7 +47,7 @@ $(function() {
             .then(function() {
                 alert('The file has been saved to AV.');
             }, function(error) {
-                alert('The file either could not be read, or could not be saved to AV.');
+                alert('The file either could not be read, or could not be saved to AV.'+ error);
             });
     }
 
@@ -55,10 +55,10 @@ $(function() {
 
 
     window.baseService = {
-        getPictureByCategory: getPictureByCategory,
+        getPicturesByCategory: getPicturesByCategory,
         savePicture: savePicture
     }
 
 
 
-})()
+})();
