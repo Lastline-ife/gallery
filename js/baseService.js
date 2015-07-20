@@ -1,4 +1,4 @@
-AV.initialize("tu2kbxu5x8bkd4i6n8sx3qmxde21mkz27fh958fdmn1koxp8", "th3uzwbjsh04s40elncun1asvry4wzurhna95vjx0rid442m");
+AV.initialize("5x7fvqzacxlv89hc9cwtec9cs9rqwyx7fphkyi1lfsm8oseh", "xyk5oksdlkz4zfm2h0hyjutzem7xgo0k4wpok6pgsipjdiwc");
 // var TestObject = AV.Object.extend("TestObject");
 // var testObject = new TestObject();
 // testObject.save({foo: "bar"}, {
