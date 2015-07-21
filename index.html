@@ -11,59 +11,91 @@
 </head>
 
 <body>
-    <header>
-        <ul>
-            <li>
-                <a href="">全部</a>
-            </li>
-            <li>
-                <a href="">人物</a>
-            </li>
-            <li><a href="">风光</a>
-            </li>
-            <li>
-                <a href="">私房</a>
-            </li>
-            <li>
-                <a href="">纪实</a>
-            </li>
-            <li>
-                <a href="">微距</a>
-            </li>
-            <li>
-                <a href="">野生动物</a>
-            </li>
-        </ul>
-    </header>
-    <div id="main">
-        <div class="column" id="column-1">
-            <a href=""><img src="img/Placeholder_640_480.jpg"></a>
-            <a href=""><img src="img/Placeholder_640_480.jpg"></a>
-            <a href=""><img src="img/Placeholder_640_480.jpg"></a>
-        </div>
-        <div class="column" id="column-2">
-            <a href=""><img src="img/Placeholder_640_480.jpg"></a>
-            <a href=""><img src="img/Placeholder_640_480.jpg"></a>
-            <a href=""><img src="img/Placeholder_640_480.jpg"></a>
-        </div>
-        <div class="column" id="column-3">
-            <a href=""><img src="img/Placeholder_640_480.jpg"></a>
-            <a href=""><img src="img/Placeholder_640_480.jpg"></a>
-            <a href=""><img src="img/Placeholder_640_480.jpg"></a>
-        </div>
-        <div class="column" id="column-4">
-            <a href=""><img src="img/Placeholder_640_480.jpg"></a>
-            <a href=""><img src="img/Placeholder_640_480.jpg"></a>
-            <a href=""><img src="img/Placeholder_640_480.jpg"></a>
-        </div>
-        <div class="watercolumn"></div>
+<header>
+    <ul>
+        <li>
+            <a href="">全部</a>
+        </li>
+        <li>
+            <a href="">人物</a>
+        </li>
+        <li><a href="">风光</a>
+        </li>
+        <li>
+            <a href="">私房</a>
+        </li>
+        <li>
+            <a href="">纪实</a>
+        </li>
+        <li>
+            <a href="">微距</a>
+        </li>
+        <li>
+            <a href="">野生动物</a>
+        </li>
+    </ul>
+</header>
+<div id="main">
+    <div class="column">
+        <div class="thumbnail"><img src="img/Placeholder_640_480.jpg" alt=""/></div>
+        <div class="thumbnail"><img src="img/Placeholder_640_480.jpg" alt=""/></div>
+        <div class="thumbnail"><img src="img/Placeholder_640_480.jpg" alt=""/></div>
     </div>
-    <input type="file" id="photoFileUpload">
-    <button id="upload">upload</button>
-    <script src="https://cdn1.lncld.net/static/js/av-mini-0.5.5.js"></script>
-    <script src="./js/jquery-2.1.3.js" type="text/javascript"></script>
-    <script src="./js/app.js" type="text/javascript"></script>
-    <script type="text/javascript" src="./js/baseService.js"></script>
+    <div class="column">
+        <div class="thumbnail"><img src="img/Placeholder_640_480.jpg" alt=""/></div>
+        <div class="thumbnail"><img src="img/Placeholder_640_480.jpg" alt=""/></div>
+        <div class="thumbnail"><img src="img/Placeholder_640_480.jpg" alt=""/></div>
+    </div>
+    <div class="column">
+        <div class="thumbnail"><img src="img/Placeholder_640_480.jpg" alt=""/></div>
+        <div class="thumbnail"><img src="img/Placeholder_640_480.jpg" alt=""/></div>
+        <div class="thumbnail"><img src="img/Placeholder_640_480.jpg" alt=""/></div>
+    </div>
+    <div class="column">
+        <div class="thumbnail"><img src="img/Placeholder_640_480.jpg" alt=""/></div>
+        <div class="thumbnail"><img src="img/Placeholder_640_480.jpg" alt=""/></div>
+        <div class="thumbnail"><img src="img/Placeholder_640_480.jpg" alt=""/></div>
+    </div>
+
+    <div class="watercolumn"></div>
+</div>
+<section id="maskLayer" style="display: none;">
+    <div style="display:inline-block;height:100%;vertical-align:middle;"></div>
+    <div id="popWindow" class="popWindow">
+        <div id="close" class="close-layer" onclick="closeDiv()">
+            <i></i>
+        </div>
+        <div class="pin-view-arrows">
+            <a href="" class="next x layer-view"></a>
+            <a href="" class="pre x layer-view"></a>
+        </div>
+    </div>
+    <div id="pop" class="pop">
+        <img src="img/Placeholder_640_480.jpg" alt=""/>
+    </div>
+</section>
+<script src="./js/jquery-2.1.3.js" type="text/javascript"></script>
+<script src="https://cdn1.lncld.net/static/js/av-mini-0.5.5.js"></script>
+<script type="text/javascript" src="./js/baseService.js"></script>
+<script>
+    function showDiv() {
+        var doc = document,
+                sWidth = doc.body.scrollWidth,
+                sHeight = doc.body.scrollHeight;
+        var oMask = doc.getElementById('popWindow');
+        doc.getElementById('maskLayer').style.display = 'block';
+        oMask.style.height = sHeight + "px";
+        oMask.style.width = sWidth + "px";
+    }
+    function closeDiv() {
+        var doc = document;
+        doc.getElementById('maskLayer').style.display = 'none';
+    }
+
+    $(function(){
+        $(".thumbnail").click(showDiv);
+    })
+</script>
 </body>
 
 </html>

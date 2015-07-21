@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>照片管理器</title>
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/admin.css" type="text/css">
+</head>
+<body>
+
+<div id="api-test">
+    <input type="file" id="photoFileUpload">
+    <button id="upload">upload</button>
+</div>
+
+<script src="./js/jquery-2.1.3.js" type="text/javascript"></script>
+<script src="https://cdn1.lncld.net/static/js/av-mini-0.5.5.js"></script>
+<script type="text/javascript" src="./js/baseService.js"></script>
+<script>
+    $(function () {
+        $('#upload').click(function () {
+            var fileUploadControl = $("#photoFileUpload")[0];
+            if (fileUploadControl.files.length > 0) {
+                var file = fileUploadControl.files[0];
+                baseService.savePicture(file, 'category2', 'name1');
+            }
+        })
+    });
+</script>
+</body>
+</html>

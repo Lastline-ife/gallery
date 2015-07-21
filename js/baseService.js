@@ -1,25 +1,15 @@
-AV.initialize("tu2kbxu5x8bkd4i6n8sx3qmxde21mkz27fh958fdmn1koxp8", "th3uzwbjsh04s40elncun1asvry4wzurhna95vjx0rid442m");
-// var TestObject = AV.Object.extend("TestObject");
-// var testObject = new TestObject();
-// testObject.save({foo: "bar"}, {
-//   success: function(object) {
-//   alert("LeanCloud works!");
-//   }
-// });
-$(function() {
-    $('#upload').click(function() {
-        var fileUploadControl = $("#photoFileUpload")[0];
-        if (fileUploadControl.files.length > 0) {
-            var file = fileUploadControl.files[0];
-            baseService.savePicture(file, 'category2', 'name1');
-        }
-    })
-});
+AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxssnxjnn5enigdu4ii07gm223jlltjv0z3411");
+
 
 (function() {
     var Picture = AV.Object.extend("Picture");
     var _File = AV.Object.extend("_File");
 
+    /**
+     * 获取图片的URL，数组形式返回给回调函数
+     * @param {string} category
+     * @param {function} callback
+     */
     function getPicturesByCategory(category,callback) {
         var query = new AV.Query(_File);
         query.startsWith("name", category+'{}');
@@ -41,6 +31,12 @@ $(function() {
         });
     }
 
+    /**
+     * 把图片上传服务器
+     * @param {HTMLInputElement} file
+     * @param {string} category
+     * @param {string} name
+     */
     function savePicture(file, category, name) {
         var avFile = new AV.File(category+'{}'+name+'.jpg', file);
         avFile.save()
