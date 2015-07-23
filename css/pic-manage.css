@@ -1,0 +1,69 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+html{
+	height: 100%;
+	width: 100%;
+
+}
+body {
+	font: 14px/1.5 "Microsoft YaHei",Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	height: 100%;
+}
+.wraper{
+	height: 100%;
+	width: 100%;
+	min-height: 420px;
+	min-width: 1028px;
+}
+
+/*---------------------pic-nav stylesheet---------------*/
+.pic-nav{
+	width: 210px;
+	height: 100%;
+	background: #2d4f7c;
+}
+header{
+	background: #5d4f7c;
+}
+header h3{
+	line-height: 45px;
+	letter-spacing: 1.5px;
+    text-align: center;
+    color: #fff;
+}
+.new-picAlbum{
+	background: #2d4f8a;
+	height: 90px;
+	padding: 38px 32px 0;
+}
+.new-picAlbum-con{
+	background: rgba(224, 117, 51, 0.88);
+	border-radius: 5px;
+	color: #fff;
+	padding: 5px 25px;
+}
+.new-picAlbum-con:hover{
+	cursor: pointer;
+}
+.new-picAlbum-con b{
+	padding-right: 5px;
+
+}
+.pic-classify{
+    color: rgba(143, 150, 153, 0.88);
+}
+.pic-classify ul{
+	list-style: none;
+}
+.pic-classify ul li{
+	padding-left: 32px;
+	line-height: 40px;
+	border-bottom: 1px solid #aaf;
+}
+.pic-classify ul li:hover{
+    border-left: 3px solid rgba(224, 117, 51, 0.88);
+    cursor: pointer;
+    color: #fff;
+}
