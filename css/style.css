@@ -1,3 +1,4 @@
+/*--------------Common stylesheet------------------*/
 *{
 	padding: 0;
 	margin: 0;
@@ -7,7 +8,21 @@
 		width: 655px;
 	}
 }
+html{
+	width: 100%;
+}
+body{
+	width: 100%;
+}
+.wraper{
+	width: 100%;
+	min-width: 1028px;
+}
+
+
+/*-------------------header stylesheet-------*/
 header{
+	width: 100%;
 	height: 50px;
 	background-color: #2d4f7c;
 	text-align: center;
@@ -40,6 +55,8 @@ header li a:hover::after{
 	border-width: 0 8px 8px 8px;
 	border-color: transparent transparent #fff transparent;
 }
+
+/*--------------------------------picture-con stylesheet---------*/
 #main{
 	width: 980px;
 	margin: 0 auto;
