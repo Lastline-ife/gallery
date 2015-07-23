@@ -63,7 +63,7 @@ header h3{
 	border-bottom: 1px solid #aaf;
 }
 .pic-classify ul li:hover{
-    border-left: 3px solid rgba(224, 117, 51, 0.88);
+    border-left: 5px solid rgba(224, 117, 51, 0.88);
     cursor: pointer;
     color: #fff;
 }
