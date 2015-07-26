@@ -10,6 +10,8 @@
 
 <div id="api-test">
     <input type="file" id="photoFileUpload">
+    <input type="text" placeholder="类别" id="category">
+    <input type="text" placeholder="图片名称" id="photoname">
     <button id="upload">upload</button>
 </div>
 
@@ -21,8 +23,10 @@
         $('#upload').click(function () {
             var fileUploadControl = $("#photoFileUpload")[0];
             if (fileUploadControl.files.length > 0) {
+                var name = $('#photoname').val();
+                var category = $('#category').val();
                 var file = fileUploadControl.files[0];
-                baseService.savePicture(file, 'category2', 'name1');
+                baseService.savePicture(file, category, name);
             }
         })
     });
