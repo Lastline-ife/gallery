@@ -10,9 +10,9 @@ AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxs
      * @param {string} category
      * @param {function} callback
      */
-    function getPicturesByCategory(category,callback) {
+    function getPicturesByCategory(category, callback) {
         var query = new AV.Query(_File);
-        query.startsWith("name", category+'{}');
+        query.startsWith("name", category + '{}');
         query.find({
             success: function(results) {
                 console.log("Successfully retrieved " + results.length + " posts.");
@@ -38,16 +38,16 @@ AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxs
      * @param {string} name
      */
     function savePicture(file, category, name) {
-        var avFile = new AV.File(category+'{}'+name+'.jpg', file);
+        var avFile = new AV.File(category + '{}' + name + '.jpg', file);
         avFile.save()
             .then(function() {
                 alert('The file has been saved to AV.');
             }, function(error) {
-                alert('The file either could not be read, or could not be saved to AV.'+ error);
+                alert('The file either could not be read, or could not be saved to AV.' + error);
             });
 
         refreshCategory(category);
-        
+
     }
 
 
@@ -55,10 +55,10 @@ AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxs
      * 传入一个类别的名称，检查这个类别是否存在，若不存在的话添加这个类别
      * @param {string} categoryName
      */
-    function refreshCategory(categoryName){
+    function refreshCategory(categoryName) {
         //设置类别，如果是新类别的话就添加
-        getAllCategoryName(function(result){
-            if(result.indexOf(categoryName) == -1){
+        getAllCategoryName(function(result) {
+            if (result.indexOf(categoryName) == -1) {
                 addCategory(categoryName);
             }
         })
@@ -66,15 +66,15 @@ AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxs
     /**
      * 获取全部专辑名字
      * @param {function} callback
-     */    
-     function getAllCategoryName(callback){
+     */
+    function getAllCategoryName(callback) {
         var query = new AV.Query(allCategoryName);
         query.equalTo("name", "allCategoryName");
         query.find({
             success: function(results) {
                 console.log("Successfully retrieved " + results.length + " posts.");
                 // 处理返回的结果数据
-                var result = results[0].get('allCategoryName');
+                var result = JSON.parse(results[0].get('allCategoryName')).data;
                 callback(result);
             },
             error: function(error) {
@@ -84,17 +84,17 @@ AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxs
     }
 
 
-    function addCategory(newCategoryName){
+    function addCategory(newCategoryName) {
         var query = new AV.Query(allCategoryName);
         query.equalTo("name", "allCategoryName");
         query.find({
             success: function(results) {
                 console.log("Successfully retrieved " + results.length + " posts.");
                 // 处理返回的结果数据
-                var nowCategory = JOSN.parse(results[0].get('allCategoryName'));
-                nowCategory.push(newCategoryName)
+                var nowCategory = JSON.parse(results[0].get('allCategoryName'));
+                nowCategory.data.push(newCategoryName)
                 var newCategory = JSON.stringify(nowCategory);
-                results[0].set('allCategoryName',newCategory);
+                results[0].set('allCategoryName', newCategory);
                 results[0].save();
             },
             error: function(error) {
@@ -105,7 +105,10 @@ AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxs
 
     window.baseService = {
         getPicturesByCategory: getPicturesByCategory,
-        savePicture: savePicture
+        savePicture: savePicture,
+        addCategory: addCategory,
+        getAllCategoryName: getAllCategoryName,
+        refreshCategory: refreshCategory
     }
 
 
