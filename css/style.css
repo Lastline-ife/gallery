@@ -41,10 +41,10 @@ header li a{
 	font-size: 15px;
 	margin: 20px;
 }
-header li a:hover{
+header li a.focus , header li a:hover{
 	color: #f7ffff;
 }
-header li a:hover::after{
+header li a.focus::after , header li a:hover::after{
 	content: "";
 	position: absolute;
 	left: 40%;

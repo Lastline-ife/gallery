@@ -1,7 +1,7 @@
 AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxssnxjnn5enigdu4ii07gm223jlltjv0z3411");
 
 (function() {
-    var Picture = AV.Object.extend("Picture");
+    var Pictures = AV.Object.extend("Pictures");
     var _File = AV.Object.extend("_File");
     var allCategoryName = AV.Object.extend("allCategoryName");
 
@@ -11,19 +11,52 @@ AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxs
      * @param {function} callback
      */
     function getPicturesByCategory(category, callback) {
-        var query = new AV.Query(_File);
-        query.startsWith("name", category + '{}');
+        var query = new AV.Query(Pictures);
+        query.startsWith("info", category + '{}');
         query.find({
             success: function(results) {
                 console.log("Successfully retrieved " + results.length + " posts.");
                 // 处理返回的结果数据
-                var urlArray = [];
+                var pictureArray = [];
                 for (var i = 0; i < results.length; i++) {
-                    var object = results[i];
+                    var AVObject = results[i];
                     // alert(object.id + ' - ' + object.get('content'));
-                    urlArray.push(object.get('url'));
+                    var picture = {
+                        URL : AVObject.get('image').url(),
+                        thumbnailURL : AVObject.get('image').thumbnailURL(200, 200),
+                        category : AVObject.get('info').split('{}')[0],
+                        name : AVObject.get('info').split('{}')[1]
+                    }
+                    urlArray.push(picture);
                 }
-                callback(urlArray);
+                callback(pictureArray);
+            },
+            error: function(error) {
+                alert("Error: " + error.code + " " + error.message);
+            }
+        });
+    }
+
+    function getAllPictures(callback) {
+        var query = new AV.Query(Pictures);
+        query.exists("info");
+        query.find({
+            success: function(results) {
+                console.log("Successfully retrieved " + results.length + " posts.");
+                // 处理返回的结果数据
+                var pictureArray = [];
+                for (var i = 0; i < results.length; i++) {
+                    var AVObject = results[i];
+                    // alert(object.id + ' - ' + object.get('content'));
+                    var picture = {
+                        URL : AVObject.get('image').url(),
+                        thumbnailURL : AVObject.get('image').thumbnailURL(200, 200),
+                        category : AVObject.get('info').split('{}')[0],
+                        name : AVObject.get('info').split('{}')[1]
+                    }
+                    pictureArray.push(picture);
+                }
+                callback(pictureArray);
             },
             error: function(error) {
                 alert("Error: " + error.code + " " + error.message);
@@ -46,8 +79,11 @@ AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxs
                 alert('The file either could not be read, or could not be saved to AV.' + error);
             });
 
+        var post = new AV.Object("Pictures");
+        post.set("info", category + '{}' + name + '.jpg');
+        post.set("image", avFile);
+        post.save();
         refreshCategory(category);
-
     }
 
 
@@ -105,6 +141,7 @@ AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxs
 
     window.baseService = {
         getPicturesByCategory: getPicturesByCategory,
+        getAllPictures: getAllPictures,
         savePicture: savePicture,
         addCategory: addCategory,
         getAllCategoryName: getAllCategoryName,
