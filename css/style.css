@@ -93,6 +93,7 @@ header li a.focus::after , header li a:hover::after{
 	background:transparent url("../img/btn_close_layer.png") no-repeat scroll 0 0;
 	width: 36px;
 	height: 36px;
+	z-index: 9999;	
 }
 .close-layer i:hover{
 	background-position: 0 -50px;
@@ -136,7 +137,9 @@ header li a.focus::after , header li a:hover::after{
 	display: inline-block;
 	color:#fff;
 	z-index: 2;
-	position: relative;
+	position: absolute;
+	left: 50%;
+	margin-left: -500px;
 	text-align:center;
 	vertical-align: middle;
 
@@ -145,6 +148,8 @@ header li a.focus::after , header li a:hover::after{
 	-webkit-box-shadow: 10px 10px 10px #aaa;
 	-moz-box-shadow: 10px 10px 10px #aaa;
 	box-shadow: 10px 10px 10px #aaa;
+	height: auto;
+	width: 1000px;
 }
 #maskLayer {
 	display: block;
@@ -154,5 +159,4 @@ header li a.focus::after , header li a:hover::after{
 	z-index: 1000;
 	width: 100%;
 	height: 100%;
-	text-align: center;
 }

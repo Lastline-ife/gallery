@@ -2,7 +2,7 @@
 
     var template = {
         header: '<li><a class="category-name">{{category-name}}</a></li>',
-        picture: '<div class="thumbnail" infocategory="{{category}}" infoname="{{name}}"><img src="{{url}}" alt=""/></div>',
+        picture: '<div class="thumbnail" infocategory="{{category}}" infoname="{{name}}"><img class="thumbnail-image" src="{{url}}" alt=""/></div>',
     }
 
     function renderHeader(categoryArray) {
