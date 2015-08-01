@@ -8,7 +8,7 @@
     function renderHeader(categoryArray) {
         var HTMLstr = '<li><a class="category-name">全部</a></li>';
         for (var i = 0; i < categoryArray.length; i++) {
-            HTMLstr = HTMLstr + template.header.replace(/{{category-name}}/g,categoryArray[i]);
+            HTMLstr = HTMLstr + template.header.replace(/{{category-name}}/g,categoryArray[i]); 
         }
         $('.header-ul').html(HTMLstr);
     }
