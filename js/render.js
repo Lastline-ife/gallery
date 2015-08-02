@@ -1,28 +1,37 @@
 (function() {
-
-    var template = {
-        header: '<li><a class="category-name">{{category-name}}</a></li>',
-        picture: '<div class="thumbnail" infocategory="{{category}}" infoname="{{name}}"><img class="thumbnail-image" src="{{url}}" alt=""/></div>',
-    }
-
-    function renderHeader(categoryArray) {
+    // 头部模版
+    var tplHeader = '<li><a class="category-name">{{ category_name }}</a></li>';
+    var preRenderHeader = new baseService.Template(tplHeader);
+    var renderHeader = function(categoryArray) {
         var HTMLstr = '<li><a class="category-name">全部</a></li>';
         for (var i = 0; i < categoryArray.length; i++) {
-            HTMLstr = HTMLstr + template.header.replace(/{{category-name}}/g,categoryArray[i]); 
+            var model = {
+                category_name : categoryArray[i]
+            };
+            HTMLstr += preRenderHeader.render(model);
         }
         $('.header-ul').html(HTMLstr);
-    }
+    };
 
-    function renderBody(pictureArray){
+    // 主体模版
+    var tplBody = '<div class="thumbnail" infocategory="{{category}}" infoname="{{name}}">' +
+        '<img class="thumbnail-image" src="{{url}}" alt=""/></div>';
+    var preRenderBody = new baseService.Template(tplBody);
+    var renderBody = function(pictureArray) {
         for(var i = 0; i < pictureArray.length ; i++){
             var nowHTML = $('.column' + i%4).html();
-            var divHTML = template.picture.replace(/{{url}}/g,pictureArray[i].thumbnailURL).replace(/{{category}}/g,pictureArray[i].category).replace(/{{name}}/g,pictureArray[i].name);
+            var model = {
+                category : pictureArray[i].category,
+                name : pictureArray[i].name,
+                url : pictureArray[i].thumbnailURL
+            };
+            var divHTML = preRenderBody.render(model);
             $('.column' + i%4).html(nowHTML+divHTML);
         }
-    }
+    };
 
     window.render = {
-      renderHeader : renderHeader,
-      renderBody : renderBody
+        renderHeader : renderHeader,
+        renderBody : renderBody
     }
-})()
+})();

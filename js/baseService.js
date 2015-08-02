@@ -26,7 +26,7 @@ AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxs
                         thumbnailURL : AVObject.get('image').thumbnailURL(200, 200),
                         category : AVObject.get('info').split('{}')[0],
                         name : AVObject.get('info').split('{}')[1]
-                    }
+                    };
                     urlArray.push(picture);
                 }
                 callback(pictureArray);
@@ -53,7 +53,7 @@ AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxs
                         thumbnailURL : AVObject.get('image').thumbnailURL(200, 200),
                         category : AVObject.get('info').split('{}')[0],
                         name : AVObject.get('info').split('{}')[1]
-                    }
+                    };
                     pictureArray.push(picture);
                 }
                 callback(pictureArray);
@@ -128,7 +128,7 @@ AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxs
                 console.log("Successfully retrieved " + results.length + " posts.");
                 // 处理返回的结果数据
                 var nowCategory = JSON.parse(results[0].get('allCategoryName'));
-                nowCategory.data.push(newCategoryName)
+                nowCategory.data.push(newCategoryName);
                 var newCategory = JSON.stringify(nowCategory);
                 results[0].set('allCategoryName', newCategory);
                 results[0].save();
@@ -139,13 +139,59 @@ AV.initialize("noew3oh7gutlboqz4vh7cpbh26zjxchsdrjd75kzl8pv26t0", "t5h3fn0qcdfxs
         });
     }
 
+
+    /**
+     * 简单的模版引擎
+     *
+     * tpl = Template('<p>Today: {{ date }}</p>\n<a href="/{{ user.id }}">{{ user.company }}</a>');
+     * var model = {
+     *   date: 20150316,
+     *   user: {
+     *       id: '001',
+     *       company: 'AT&T'
+     *   }
+     * };
+     * s = tpl.render(model);
+     * $(#id).html = s;
+     *
+     * @param {string} tpl - 模版字符串
+     * @constructor
+     */
+    function Template(tpl) {
+        var
+            fn,
+            match,
+            code = ['var r=[];'],
+            re = /\{\{\s*([a-zA-Z\.\_0-9()]+)\s*\}\}/m,
+            addLine = function (text) {
+                code.push('r.push(\'' + text.replace(/\'/g, '\\\'').replace(/\n/g, '\\n').replace(/\r/g, '\\r') + '\');');
+            };
+        while (match = re.exec(tpl)) {
+            if (match.index > 0) {
+                addLine(tpl.slice(0, match.index));
+            }
+            code.push('r.push(this.' + match[1] + ');');
+            tpl = tpl.substring(match.index + match[0].length);
+        }
+        addLine(tpl);
+        code.push('return r.join(\'\');');
+        console.log(code.join('\n'));
+        // 创建函数:
+        fn = new Function(code.join('\n'));
+        // 用render()调用函数并绑定this参数：
+        this.render = function (model) {
+            return fn.apply(model);
+        };
+    }
+
     window.baseService = {
         getPicturesByCategory: getPicturesByCategory,
         getAllPictures: getAllPictures,
         savePicture: savePicture,
         addCategory: addCategory,
         getAllCategoryName: getAllCategoryName,
-        refreshCategory: refreshCategory
+        refreshCategory: refreshCategory,
+        Template: Template
     }
 
 

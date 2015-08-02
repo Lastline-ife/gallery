@@ -4,7 +4,7 @@ $(function() {
     function init() {
         baseService.getAllCategoryName(function(categoryArray) {
             render.renderHeader(categoryArray);
-        })
+        });
 
         baseService.getAllPictures(function(picturesArray) {
             console.log(picturesArray);
@@ -56,8 +56,8 @@ $(function() {
             console.log('wjfklajflwa');
             closeDiv();
         }
-    })
+    });
 
     init();
 
-})
+});
